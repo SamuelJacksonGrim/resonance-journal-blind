@@ -103,7 +103,10 @@ class Resonance:
         if version is not None and self.store.note_count():
             print(f"resonance: tokenizer v{version} → v{T.TOKENIZER_VERSION}, rebuilding derived tables",
                   file=sys.stderr)
-            self.rebuild()
+            r = self.rebuild()
+            if r["relations_rekeyed"] or r["relations_collapsed"]:
+                print(f"resonance: {r['relations_rekeyed']} relation(s) re-keyed, "
+                      f"{r['relations_collapsed']} collapsed", file=sys.stderr)
         else:
             with self.store.tx():
                 self.store.set_meta("tokenizer_version", str(T.TOKENIZER_VERSION))
@@ -198,6 +201,7 @@ class Resonance:
         """Recompute every derived table from the notes (Flows F7)."""
         with self.store.tx():
             self.store.clear_derived()
+            rekeyed, collapsed = self._rekey_relations()
             n = 0
             for row in list(self.store.iter_notes()):
                 pairs, tf = T.analyze(row["text"])
@@ -205,7 +209,32 @@ class Resonance:
                 n += 1
             pruned = self.store.prune_if_needed()
             self.store.set_meta("tokenizer_version", str(T.TOKENIZER_VERSION))
-        return {"notes": n, "pruned_pairs": pruned}
+        return {"notes": n, "pruned_pairs": pruned,
+                "relations_rekeyed": rekeyed, "relations_collapsed": collapsed}
+
+    def _rekey_relations(self) -> tuple[int, int]:
+        """Bring asserted relations in line with the current tokenizer (D-010).
+
+        Relations are operator data keyed by term text. A tokenizer change
+        (e.g. accent folding) would otherwise orphan them. Only the fold is
+        reapplied, not the whole pipeline, so stored terms are not re-folded.
+        On a key clash the newer assertion wins. A relation whose ends become
+        the same term is dropped and counted.
+        """
+        rekeyed = collapsed = 0
+        for row in list(self.store.iter_relations()):
+            na, nb = T.fold_accents(row["a"]), T.fold_accents(row["b"])
+            if (na, nb) == (row["a"], row["b"]):
+                continue
+            self.store.delete_relation(row["a"], row["b"])
+            if na == nb:
+                collapsed += 1
+                continue
+            existing = self.store.get_relation(na, nb)
+            if existing is None or existing["created_at"] <= row["created_at"]:
+                self.store.upsert_relation(na, nb, row["type"], row["weight"], row["created_at"])
+            rekeyed += 1
+        return rekeyed, collapsed
 
     # --- reads --------------------------------------------------------------
 

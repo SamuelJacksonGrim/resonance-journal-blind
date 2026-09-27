@@ -13,7 +13,7 @@ last_decision: null
 ## Core Domain Types
 - **Note** — a stored passage. `id, text, content_hash, source?, importance,
   created_at, n_terms`. Immutable once stored; removed only by `forget`.
-- **Term** — a normalized token (lowercase, stopword-free, plural-folded; see
+- **Term** — a normalized token (casefolded, Latin accents folded, stopword-free, plural-folded; see
   `text.py`). Row: `id, text, df, mass`.
 - **Pair** — learned co-occurrence evidence between two terms. Row:
   `a, b, count` with `a < b` (Contracts I4). `count` is a real number: the sum

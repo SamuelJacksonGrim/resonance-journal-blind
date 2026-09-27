@@ -334,6 +334,9 @@ class Store:
             "created_at=excluded.created_at", (a, b, rtype, weight, created_at))
         return prev
 
+    def get_relation(self, a: str, b: str) -> sqlite3.Row | None:
+        return self.conn.execute("SELECT * FROM relations WHERE a=? AND b=?", (a, b)).fetchone()
+
     def delete_relation(self, a: str, b: str) -> bool:
         return self.conn.execute("DELETE FROM relations WHERE a=? AND b=?", (a, b)).rowcount > 0
 

@@ -8,9 +8,11 @@ rebuilds derived tables when the version changes).
 from __future__ import annotations
 
 import re
+import unicodedata
 from collections import Counter
 
-TOKENIZER_VERSION = 1
+# v2: accent folding for Latin script (zürich == zurich) and casefold (ß → ss).
+TOKENIZER_VERSION = 2
 
 # Co-occurrence window: pairs up to WINDOW tokens apart, weighted 1/distance.
 # Provenance: word2vec and GloVe use windows of 5-10; GloVe introduced 1/d
@@ -58,9 +60,38 @@ def fold(token: str) -> str:
     return token
 
 
+# Latin letters that carry no combining mark to strip (NFKD leaves them whole).
+_LATIN_EXTRA = str.maketrans({"ø": "o", "æ": "ae", "œ": "oe", "ł": "l", "đ": "d",
+                              "ð": "d", "þ": "th", "ı": "i"})
+
+
+def _is_latin(ch: str) -> bool:
+    o = ord(ch)
+    return o < 0x0250 or 0x1E00 <= o <= 0x1EFF
+
+
+def fold_accents(text: str) -> str:
+    """Casefold, then drop combining marks that sit on Latin letters.
+
+    Marks on other scripts are kept: in Devanagari, Thai, or Hebrew they are
+    part of the word, not decoration. NFKD also unpacks ligatures and
+    full-width forms (ﬁ → fi, ｚ → z).
+    """
+    out: list[str] = []
+    prev_latin = False
+    for ch in unicodedata.normalize("NFKD", text.casefold()):
+        if unicodedata.combining(ch):
+            if not prev_latin:
+                out.append(ch)
+            continue
+        prev_latin = _is_latin(ch)
+        out.append(ch)
+    return unicodedata.normalize("NFC", "".join(out)).translate(_LATIN_EXTRA)
+
+
 def normalize_token(raw: str) -> str | None:
     """One raw token → a term, or None if it is not a term."""
-    t = raw.lower().replace("’", "'")
+    t = fold_accents(raw).replace("’", "'")
     if t.endswith("'s"):
         t = t[:-2]
     if len(t) < MIN_TOKEN_LEN or t in STOPWORDS or t.isdigit():

@@ -5,7 +5,7 @@ order: 99
 fills: "architectural memory — consequential decisions, not every change"
 depends_on: []
 filled_by: both
-last_decision: D-009
+last_decision: D-010
 ---
 
 # DecisionLog — Resonance
@@ -140,3 +140,23 @@ last_decision: D-009
   made by an older tokenizer would be subtracted wrongly. Rebuild only touches
   recomputable data.
 - **Affects:** memory.py, Contracts ("identical tokenizer").
+
+### D-010 — Should "zurich" find "Zürich"?
+- **Date:** 2026-09-27
+- **Decided by:** both (the human reported the miss; the AI chose the fold)
+- **Status:** active
+- **Decision:** Tokenizer v2 casefolds and drops combining marks that sit on
+  Latin letters (NFKD), plus a small map for letters that do not decompose (ø,
+  æ, œ, ł, đ, ð, þ). Marks on other scripts are kept. On upgrade the automatic
+  rebuild also re-keys asserted relations through the same fold. A key clash
+  keeps the newer assertion. A relation whose two ends become one term is
+  dropped, and the count is reported on stderr and in the `rebuild` result.
+- **Alternatives:** Strip every combining mark (rejected: it breaks words in
+  Devanagari, Thai, and Hebrew). Keep accented and plain forms as separate
+  terms linked by synonym relations (rejected: it doubles the terms and splits
+  the co-occurrence mass). Leave relations as they are (rejected: they would
+  silently stop matching).
+- **Reason:** An AI querying memory rarely reproduces the exact diacritics the
+  human typed. A missed recall looks exactly like "nothing relevant stored".
+- **Affects:** text.py (TOKENIZER_VERSION 2), memory.py (rebuild),
+  store.py (get_relation), Contracts, Types.

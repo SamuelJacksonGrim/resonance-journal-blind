@@ -76,6 +76,47 @@ class TextTests(unittest.TestCase):
         self.assertNotIn(("word0", "word6"), pairs)
 
 
+class AccentTests(Base):
+    def test_fold_accents_latin(self):
+        for raw, want in [("Zürich", "zurich"), ("café", "cafe"), ("naïve", "naive"),
+                          ("Straße", "strasse"), ("Ørsted", "orsted"), ("ﬁle", "file"),
+                          ("ÉTÉ", "ete")]:
+            self.assertEqual(T.fold_accents(raw), want, raw)
+
+    def test_non_latin_marks_kept(self):
+        for word in ["हिन्दी", "ภาษาไทย", "Москва", "東京"]:
+            self.assertEqual(T.fold_accents(word), word.casefold(), word)
+
+    def test_recall_matches_either_spelling(self):
+        self.mem.remember("Café owners in Zürich serve strong coffee.")
+        for q in ("zurich", "ZÜRICH", "Zurich", "zürich"):
+            terms = [t["term"] for t in self.mem.recall(q)["terms"]]
+            self.assertIn("zurich", terms, q)
+        self.assertEqual(self.mem.relate("café", "coffee", "related")["a"], "cafe")
+
+    def test_upgrade_rekeys_relations(self):
+        self.mem.remember("Café owners in Zürich serve strong coffee.")
+        c = self.mem.store.conn
+        with self.mem.store.tx():  # simulate a v1 store: accented keys, old version
+            c.execute("INSERT INTO relations(a,b,type,weight,created_at) VALUES"
+                      "('zürich','city','is_a',0.9,'2026-01-01T00:00:00Z'),"
+                      "('café','cafe','synonym',1.0,'2026-01-01T00:00:00Z')")
+            self.mem.store.set_meta("tokenizer_version", "1")
+        self.mem.close()
+        import contextlib
+        err = io.StringIO()
+        with contextlib.redirect_stderr(err):
+            self.mem = Resonance(self.path)
+        rels = {(r["a"], r["b"]) for r in self.mem.store.iter_relations()}
+        self.assertIn(("zurich", "city"), rels)
+        self.assertNotIn(("zürich", "city"), rels)
+        self.assertFalse(any(a == b for a, b in rels))
+        self.assertIn("1 relation(s) re-keyed, 1 collapsed", err.getvalue())
+        pulled = {t["term"] for t in self.mem.recall("city")["terms"]}
+        self.assertIn("zurich", pulled)
+        ledger_ok(self.mem)
+
+
 class WeightTests(unittest.TestCase):
     def test_npmi_bounds(self):
         self.assertEqual(W.npmi(0, 1, 1, 10), 0.0)

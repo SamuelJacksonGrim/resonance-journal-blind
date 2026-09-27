@@ -5,7 +5,7 @@ order: 4
 fills: "guarantees, assumptions, invariants, pre/post-conditions"
 depends_on: [Architecture, Flows]
 filled_by: both
-last_decision: D-007
+last_decision: D-010
 ---
 
 # Contracts — Resonance
@@ -72,6 +72,10 @@ last_decision: D-007
   what to subtract from the note text. If the tokenizer changed in between,
   it subtracts the wrong pairs. Hence `TOKENIZER_VERSION` in `meta` and the
   automatic rebuild on mismatch (F7).
+- **A rebuild re-keys relations through the current fold.** Relations are
+  operator data keyed by term text. Without re-keying, a tokenizer change such
+  as accent folding in v2 orphans them: `zürich is_a city` never matches the
+  term `zurich` again. The only failure is quiet recall misses (D-010).
 - **Confidence damping must stay.** NPMI alone scores two words seen together
   once, and nowhere else, at 1.0 — the maximum. Without `c/(c+2)`, hapax pairs
   outrank well-attested ones and recall fills with noise.
