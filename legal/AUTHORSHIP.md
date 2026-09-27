@@ -18,9 +18,26 @@ rights.)
    depth selection, intake rules, security floor, the definition of "done", and
    the templates every design document starts from. That methodology governed
    how this work was designed and built.
-2. **The prompt.** The author wrote a one-shot request: *"Build me something that weighs semantic relationships between words for storage that makes accessing them easy for an AI to pull when relevant."*
-3. **Generation.** An AI tool (Claude) produced the design documents and code in a single autonomous pass under that methodology, with no further human input during the pass.
-4. **Selection and direction.** The author reviewed the result, judged it, accepted it, and directed later changes. The first was the accent-folding fix (D-010 in architecture/DecisionLog.md).
+2. **The trials.** The work came out of consecutive, controlled trial and error
+   that the author directed. Each round changed the framework the next round
+   ran under, and the author decided what changed:
+   - **Trial 1:** a first build of a journal application
+     (`resonance-journal`). The author graded it and named what it missed.
+   - **Intake trials:** two rounds of fresh AI agents ran the framework's
+     intake on three different requests. Their failures became framework
+     revisions (Architecture-Blueprints-Frameworks D-013 to D-022).
+   - **Trial 2:** a re-run (`resonance-journal-rerun`). It exposed an answer
+     key inside the framework, and the author ruled that answer keys stay
+     outside the system under test (D-023).
+   - **Trial 3:** a blind build (`resonance-journal-blind`) from a prompt the
+     author wrote to be unseen by the framework. The author then judged it,
+     overruled an AI's defect finding, and directed the accent-folding fix.
+3. **This repository is Trial 3.** The author's prompt: *"Build me something that weighs semantic relationships between words for storage that makes accessing them easy for an AI to pull when relevant."*
+4. **The final generation pass.** An AI tool (Claude) wrote this repository's
+   design documents and code in one autonomous pass under the framework as it
+   stood after the earlier rounds. That pass is the last step of the sequence
+   above, not a standalone one-shot.
+5. **Selection and direction.** The author reviewed the result, judged it, accepted it, and directed later changes. The first was the accent-folding fix (D-010 in architecture/DecisionLog.md).
 
 The AI tools were instruments. None is an author.
 

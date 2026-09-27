@@ -110,7 +110,9 @@ methodology and direction. Two consequences:
   2. **Creative modification and editing** — each pass where the author takes one
      model's output, directs another model to change it, and arbitrates the
      result is human expression layered onto the work.
-  **For this project**, the initial code was generated in **one autonomous pass** from a short prompt, under
+  **For this project**, the work came out of **consecutive, controlled trials**
+  directed by the author. Each round revised the framework the next ran under.
+  The final code was written in one autonomous pass from the author's prompt, under
   a construction methodology the author designed and wrote
   (Architecture-Blueprints-Frameworks). The author then reviewed, accepted, and
   directed later changes. The author's clearest protectable expression is the
