@@ -118,12 +118,6 @@ methodology and direction. Two consequences:
   directed later changes. The author's clearest protectable expression is the
   methodology itself, plus the selection, direction, and modification added from
   here on. See `legal/AUTHORSHIP.md`.
-- **The thin spot (know it, don't overclaim).** A block a model produced that
-  survives **verbatim and unedited**, contributed with no human creative choice,
-  is the weakest link — that exact string may not be independently
-  copyrightable. The rule is: enforcement rests on the human-authored and
-  human-arranged expression, so keep exercising (and being able to describe)
-  that control. See `legal/AUTHORSHIP.md`.
 
 ### 2.6 The commercial contract layer — state contract law & the UCC
 
