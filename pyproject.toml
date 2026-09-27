@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "resonance"
+version = "0.1.0"
+description = "Weighted semantic memory an AI can pull from when relevant."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+resonance = "resonance.cli:main"
+resonance-mcp = "resonance.mcp_server:main"
+
+[tool.setuptools]
+packages = ["resonance"]

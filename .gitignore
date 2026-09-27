@@ -1,0 +1,6 @@
+__pycache__/
+*.egg-info/
+*.db
+*.db-wal
+*.db-shm
+build/
