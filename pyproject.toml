@@ -9,6 +9,18 @@ description = "Weighted semantic memory an AI can pull from when relevant."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []
+license = {text = "AGPL-3.0-only OR LicenseRef-Commercial"}
+authors = [{name = "Samuel Jackson Grim", email = "samgrim97@gmail.com"}]
+classifiers = [
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "License :: Other/Proprietary License",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/SamuelJacksonGrim/resonance-journal-blind"
+Licensing = "https://github.com/SamuelJacksonGrim/resonance-journal-blind/blob/master/LICENSING.md"
 
 [project.scripts]
 resonance = "resonance.cli:main"

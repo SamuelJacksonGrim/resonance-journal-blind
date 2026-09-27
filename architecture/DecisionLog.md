@@ -5,7 +5,7 @@ order: 99
 fills: "architectural memory — consequential decisions, not every change"
 depends_on: []
 filled_by: both
-last_decision: D-010
+last_decision: D-011
 ---
 
 # DecisionLog — Resonance
@@ -160,3 +160,19 @@ last_decision: D-010
   human typed. A missed recall looks exactly like "nothing relevant stored".
 - **Affects:** text.py (TOKENIZER_VERSION 2), memory.py (rebuild),
   store.py (get_relation), Contracts, Types.
+
+### D-011 — Under what terms is this released?
+- **Date:** 2026-09-27
+- **Decided by:** human (the AI applied it)
+- **Status:** active
+- **Decision:** Dual license, AGPL-3.0-only OR commercial, mirroring
+  resonance-memory: `LICENSE`, `LICENSING.md`, `COMMERCIAL-LICENSE.md`,
+  `NOTICE`, `CONTRIBUTING.md` (DCO/CLA), `legal/`, per-file SPDX headers,
+  README badges, and license metadata in `pyproject.toml`.
+- **Alternatives:** Copy resonance-memory's authorship record word for word
+  (rejected: it says "the author does not use one-shot AI prompting", which is
+  false for this project). The authorship record and LEGAL-BASIS §2.5 describe
+  the one-shot build under the author's methodology as it actually happened.
+- **Reason:** Protect the work under the author's standard terms, with a record
+  that stays true.
+- **Affects:** repository root, legal/, every source file header.
