@@ -7,6 +7,13 @@
 [![MCP server](https://img.shields.io/badge/MCP-server-111111)](https://modelcontextprotocol.io/)
 [![built with](https://img.shields.io/badge/built%20with-Architecture--Blueprints--Frameworks-orange)](https://github.com/SamuelJacksonGrim/Architecture-Blueprints-Frameworks)
 
+> **How this was built.** This is Trial 3 of a series of controlled one-shot
+> builds I ran to test my
+> [Architecture-Blueprints-Frameworks](https://github.com/SamuelJacksonGrim/Architecture-Blueprints-Frameworks).
+> It was built blind, from a deliberately vague prompt the framework had never
+> seen. The full story, from the first build to this one, is in the
+> [case study](https://github.com/SamuelJacksonGrim/resonance-journal#case-study-testing-a-build-framework-with-one-shot-ai-builds).
+
 ## License
 
 This project is dual-licensed under **AGPL-3.0-only** OR a commercial license.
