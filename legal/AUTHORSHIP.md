@@ -14,7 +14,7 @@ rights.)
 
 1. **The method.** The author designed and wrote the
    [Architecture-Blueprints-Frameworks](https://github.com/SamuelJacksonGrim/Architecture-Blueprints-Frameworks)
-   methodology over months of iterative refinement: its construction order,
+   methodology over months of iterative, multi-model refinement (Claude, GPT, Grok): its construction order,
    depth selection, intake rules, security floor, the definition of "done", and
    the templates every design document starts from. That methodology governed
    how this work was designed and built.
@@ -26,27 +26,43 @@ The AI tools were instruments. None is an author.
 
 ## The author's position
 
-The author's position is that this work is protected human authorship. It would
-not exist in this form without the Architecture-Blueprints-Frameworks
-methodology, which is the author's original work built over months, and whose
-rules and templates determined what was built and how it is documented.
+The author's position is that this work is protected human authorship, on three
+grounds.
 
-**The strongest concrete ground for that position.** The ten design documents in
-`architecture/` and the `INTENT.md` card were instantiated from the author's
-templates. They carry the templates' structure, headings, frontmatter, and
-wording, and they apply the author's documented rules (DecisionLog habits,
-Intent Card format, depth tables). Those parts are derivative of the author's
-protected expression.
+1. **The framework is a human-authored control system, not a prompt.** The
+   Architecture-Blueprints-Frameworks repository was built since 2026-06-15
+   through a multi-model chain (Claude, GPT, Grok) directed, selected, and
+   edited by the author, and refined further through controlled test
+   iterations the author designed and judged (see that repository's
+   `legal/AUTHORSHIP.md`). It does not merely describe a wanted result. It sets
+   the construction order, what must be decided and recorded, how, and in what
+   form.
+2. **Human-authored expression appears in this work.** The design documents in
+   `architecture/` and the `INTENT.md` card were instantiated from the author's
+   templates. They carry the templates' structure, headings, frontmatter, and
+   wording, and they apply the author's documented rules. Those parts are
+   derivative of the author's protected expression.
+3. **The author, through the framework, controlled the structure, sequence,
+   and organization** of the design record. For software, that is the
+   expression copyright law protects. The evidence is consistency: independent
+   builds with different prompts, one of them blind (`resonance-journal`,
+   `resonance-journal-rerun`, `resonance-journal-blind`), produced the same
+   ten-document structure, the same Intent Card sections, the same DecisionLog
+   form, and the same kind of handover. The framework determined that
+   arrangement. The model did not.
 
-**The honest limit.** Copyright does not extend to "any idea, procedure,
-process, system, method of operation" (17 U.S.C. §102(b)). A methodology's
-influence *as a method* does not by itself make generated code copyrightable.
-Code generated in one autonomous pass from a short prompt is also where the
-Copyright Office has been most skeptical. The code's protection is strongest
-where it carries the author's template-derived expression, and wherever the
-author selects, arranges, or modifies it from here on. To strengthen the claim,
-keep making real creative changes and keep the evidence: commits, prompts, and
-decision logs.
+**The honest limits.**
+- A method *as a method* is excluded from copyright (17 U.S.C. §102(b)).
+- Prompts alone were held generally insufficient in the Copyright Office's
+  January 2025 report on copyrightability.
+- The individual lines of code varied between runs, so the control argument is
+  strongest for the design record's structure and weaker line by line.
+- Functional code is thinly protected for everyone (the *Altai* filtration
+  test; the merger doctrine).
+- No court has ruled on AI-built software yet.
+
+The claim strengthens with every change the author makes or directs from here
+on. Keep the evidence: commits, prompts, and decision logs.
 
 ## Why this matters for the license
 
