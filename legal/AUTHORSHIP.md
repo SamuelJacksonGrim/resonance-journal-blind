@@ -14,7 +14,7 @@ rights.)
 
 1. **The method.** The author designed and wrote the
    [Architecture-Blueprints-Frameworks](https://github.com/SamuelJacksonGrim/Architecture-Blueprints-Frameworks)
-   methodology over months of iterative, multi-model refinement (Claude, GPT, Grok, Gemini): its construction order,
+   methodology over months of iterative, multi-model refinement (Claude, GPT, Grok, Gemini, and at times Copilot): its construction order,
    depth selection, intake rules, security floor, the definition of "done", and
    the templates every design document starts from. That methodology governed
    how this work was designed and built.
@@ -48,7 +48,7 @@ grounds.
 
 1. **The framework is a human-authored control system, not a prompt.** The
    Architecture-Blueprints-Frameworks repository was built since 2026-06-15
-   through a multi-model chain (Claude, GPT, Grok, Gemini) directed, selected, and
+   through a multi-model chain (Claude, GPT, Grok, Gemini, and at times Copilot) directed, selected, and
    edited by the author, and refined further through controlled test
    iterations the author designed and judged (see that repository's
    `legal/AUTHORSHIP.md`). It does not merely describe a wanted result. It sets
