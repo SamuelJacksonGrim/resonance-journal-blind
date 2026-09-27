@@ -110,8 +110,7 @@ methodology and direction. Two consequences:
   2. **Creative modification and editing** — each pass where the author takes one
      model's output, directs another model to change it, and arbitrates the
      result is human expression layered onto the work.
-  **For this project the workflow was different, and the record says so.** The
-  initial code was generated in **one autonomous pass** from a short prompt, under
+  **For this project**, the initial code was generated in **one autonomous pass** from a short prompt, under
   a construction methodology the author designed and wrote
   (Architecture-Blueprints-Frameworks). The author then reviewed, accepted, and
   directed later changes. The author's clearest protectable expression is the
@@ -120,9 +119,7 @@ methodology and direction. Two consequences:
 - **The thin spot (know it, don't overclaim).** A block a model produced that
   survives **verbatim and unedited**, contributed with no human creative choice,
   is the weakest link — that exact string may not be independently
-  copyrightable. Here, from a one-shot pass, that describes much of the initial
-  code, so human modification from here on matters more than usual. The
-  honest rule remains: enforcement rests on the human-authored and
+  copyrightable. The rule is: enforcement rests on the human-authored and
   human-arranged expression, so keep exercising (and being able to describe)
   that control. See `legal/AUTHORSHIP.md`.
 

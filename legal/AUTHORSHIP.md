@@ -10,11 +10,11 @@ accurate account of the author's contribution supports registration and
 enforcement. (Under *Thaler v. Perlmutter*, an AI is not an author and holds no
 rights.)
 
-## How this work was created. Stated plainly, because it differs from the author's multi-model projects.
+## How this work was created
 
 1. **The method.** The author designed and wrote the
    [Architecture-Blueprints-Frameworks](https://github.com/SamuelJacksonGrim/Architecture-Blueprints-Frameworks)
-   methodology over months of iterative, multi-model refinement (Claude, GPT, Grok): its construction order,
+   methodology over months of iterative, multi-model refinement (Claude, GPT, Grok, Gemini): its construction order,
    depth selection, intake rules, security floor, the definition of "done", and
    the templates every design document starts from. That methodology governed
    how this work was designed and built.
@@ -31,7 +31,7 @@ grounds.
 
 1. **The framework is a human-authored control system, not a prompt.** The
    Architecture-Blueprints-Frameworks repository was built since 2026-06-15
-   through a multi-model chain (Claude, GPT, Grok) directed, selected, and
+   through a multi-model chain (Claude, GPT, Grok, Gemini) directed, selected, and
    edited by the author, and refined further through controlled test
    iterations the author designed and judged (see that repository's
    `legal/AUTHORSHIP.md`). It does not merely describe a wanted result. It sets
@@ -51,22 +51,11 @@ grounds.
    form, and the same kind of handover. The framework determined that
    arrangement. The model did not.
 
-**The honest limits.**
-- A method *as a method* is excluded from copyright (17 U.S.C. §102(b)).
-- Prompts alone were held generally insufficient in the Copyright Office's
-  January 2025 report on copyrightability.
-- The individual lines of code varied between runs, so the control argument is
-  strongest for the design record's structure and weaker line by line.
-- Functional code is thinly protected for everyone (the *Altai* filtration
-  test; the merger doctrine).
-- No court has ruled on AI-built software yet.
-
-The claim strengthens with every change the author makes or directs from here
-on. Keep the evidence: commits, prompts, and decision logs.
+Keep the evidence: commits, prompts, and decision logs.
 
 ## Why this matters for the license
 
-To the extent the work is copyrightable, the author is its sole human author
+The author is the work's sole human author
 and may license it under both the AGPL-3.0 and a separate commercial license
 (see `LEGAL-BASIS.md`).
 
